@@ -141,7 +141,7 @@ map <S-Enter> O<ESC>
 " NERDtree toggle
 map <C-\> :NERDTreeToggle<CR>
 nnoremap <F5> :UndotreeToggle<CR>
-
+nmap <F8> :TagbarToggle<CR>
 
 " FZF setup
 " https://github.com/junegunn/fzf.vim
@@ -192,5 +192,23 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
 let g:syntastic_javascript_checkers = ['eslint']
+
+
+" CTAGS Tagbar config for various languages...
+let g:tagbar_type_elixir = {
+    \ 'ctagstype' : 'elixir',
+    \ 'kinds' : [
+        \ 'f:functions',
+        \ 'functions:functions',
+        \ 'c:callbacks',
+        \ 'd:delegates',
+        \ 'e:exceptions',
+        \ 'i:implementations',
+        \ 'a:macros',
+        \ 'o:operators',
+        \ 'm:modules',
+        \ 'p:protocols',
+        \ 'r:records'
+    \ ]
+      \ }
