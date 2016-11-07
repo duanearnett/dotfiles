@@ -40,9 +40,6 @@ set hlsearch
 set visualbell
 set noerrorbells
 
-" -- Autocompletion
-" set completeopt=menu
-
 " Backspace behaves as expected
 set backspace=indent,eol,start
 set hidden
@@ -69,14 +66,6 @@ colorscheme hybrid_material
 let g:airline_theme="hybrid"
 let g:enable_bold_font =1
 
-" -- Indent guides colors
-" let g:indentLine_setColors=0
-" let g:indentLine_color_term=239
-" let g:indentLine_leadingSpaceChar='.'
-" let g:indentLine_leadingSpaceEnabled=1
-" let g:indentLine_char = '¦'
-" let g:indentLine_faster = 1
-" let g:indentLine_maxLines = 500
 
 "" Enable file specific behavior like syntax highlighting and indentation 
 filetype on
@@ -122,7 +111,6 @@ let g:ycm_filetype_blacklist = {
 " let test#strategy = "dispatch"
  
 " -- Hot keys
-
 " Disabling the directional keys
 map <up> <nop>
 map <down> <nop> 
@@ -143,7 +131,7 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
-" Open dash under the current cursor
+" Open dash.app under the current cursor
 nmap <C-h> :Dash<CR>
 
 " easily insert blank lines above and below without Insert mode
@@ -156,6 +144,7 @@ nnoremap <F5> :UndotreeToggle<CR>
 
 
 " FZF setup
+" https://github.com/junegunn/fzf.vim
 set rtp+=/usr/local/opt/fzf
 
 " This is the default extra key bindings
@@ -192,3 +181,16 @@ let g:fzf_colors =
 " " previous-history instead of down and up. If you don't like the change,
 " " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+" Syntastic 
+" Feedback for linters and syntax errors
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_javascript_checkers = ['eslint']
