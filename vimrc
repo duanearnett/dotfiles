@@ -4,7 +4,7 @@
 
 " Activate pathogen
 call pathogen#infect()
-
+let syntastic_mode_map = { 'passive_filetypes': ['html']  }
 set nocompatible
 set noswapfile
 set nobackup
@@ -211,4 +211,4 @@ let g:tagbar_type_elixir = {
         \ 'p:protocols',
         \ 'r:records'
     \ ]
-      \ }
+\ }
