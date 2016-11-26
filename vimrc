@@ -1,6 +1,6 @@
-" Super awesome VIM Configuration - 
+" Super awesome VIM Configuration -
 " - Duane Arnett
-" - fortyau.com 
+" - fortyau.com
 
 " Activate pathogen
 call pathogen#infect()
@@ -14,6 +14,7 @@ set norelativenumber
 set foldmethod=manual
 set noesckeys
 set timeoutlen=1000 ttimeoutlen=0
+set clipboard=unnamed              " - Use the system clipboard inside vim
 
 " -- Display
 set title
@@ -62,19 +63,19 @@ let g:CoffeeAutoTagTagRelative=1  " Sets file names to the relative path from th
 
 " -- Themes!
 set background=dark
-colorscheme hybrid_material 
+colorscheme hybrid_material
 let g:airline_theme="hybrid"
 let g:enable_bold_font =1
 
 
-"" Enable file specific behavior like syntax highlighting and indentation 
+"" Enable file specific behavior like syntax highlighting and indentation
 filetype on
-filetype plugin on 
+filetype plugin on
 filetype indent on
 """ Stagebloc sbt files should be associated with HTML
-au BufRead,BufNewFile *.sbt setfiletype html 
+au BufRead,BufNewFile *.sbt setfiletype html
 
-" set guifont=DejaVu\ Sans\ Mono\ 13 
+" set guifont=DejaVu\ Sans\ Mono\ 13
 " set antialias
 
 " Airline
@@ -109,16 +110,16 @@ let g:ycm_filetype_blacklist = {
 
 " make test commands execute using dispatch.vim
 " let test#strategy = "dispatch"
- 
+
 " -- Hot keys
 " Disabling the directional keys
 map <up> <nop>
-map <down> <nop> 
-map <left> <nop> 
-map <right> <nop> 
-imap <up> <nop> 
-imap <down> <nop> 
-imap <left> <nop> 
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
 imap <right> <nop>
 
 " Avoid using the <esc> key
@@ -182,7 +183,7 @@ let g:fzf_colors =
 " " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-" Syntastic 
+" Syntastic
 " Feedback for linters and syntax errors
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
