@@ -52,6 +52,20 @@ let bclose_multiple = 0
 set listchars=tab:>-,trail:.,extends:>,precedes:<,nbsp:.
 set list
 
+" Removes trailing spaces
+function! TrimWhiteSpace()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfunction
+
+autocmd FileWritePre    * :call TrimWhiteSpace()
+autocmd FileAppendPre   * :call TrimWhiteSpace()
+autocmd FilterWritePre  * :call TrimWhiteSpace()
+autocmd BufWritePre     * :call TrimWhiteSpace()
+
+
 " Enable syntax highlighting
 syntax enable
 
