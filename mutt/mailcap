@@ -16,5 +16,9 @@ text/html; opera %s ;
 text/html; w3m -T text/html -dump %s; copiousoutput
 #text/html; ~/.mutt/view_attachment.sh %s html
 
+# ICS and calendar invites
+application/ics; ~/.mutt/view_attachment.sh %s "-"
+text/calendar; ~/.mutt/view_attachment.sh %s "-"
+
 # Unidentified files
 application/octet-stream; ~/.mutt/view_attachment.sh %s "-"
