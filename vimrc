@@ -14,6 +14,10 @@ Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'rbgrouleff/bclose.vim'   " Close a buffer
 Plug 'embear/vim-localvimrc'   " Overwrite config per directory
 
+" Auto-correction for writing things
+" Plug 'reedes/vim-wordy', { 'for': ['mail', 'markdown', 'text'] }
+Plug 'reedes/vim-litecorrect', { 'for': ['mail', 'markdown', 'text'] }
+
 " Editor niceties
 Plug 'jiangmiao/auto-pairs'
 Plug 'ctrlpvim/ctrlp.vim' | Plug 'FelikZ/ctrlp-py-matcher'
@@ -35,7 +39,7 @@ Plug 'valloric/youcompleteme', { 'do': './install.py --tern-completer' }
 Plug 'hail2u/vim-css3-syntax'
 
 " HTML
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', { 'for': 'html' }
 
 " Jade/Pug
 Plug 'digitaltoad/vim-pug'
@@ -54,9 +58,22 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 
 " PHP
-Plug 'StanAngeloff/php.vim'
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+
+" Mail
 
 call plug#end()
+
+" Autocommands for mutt, etc
+set spelllang=en_us
+au BufRead,BufNewFile *mutt* set filetype=mail
+autocmd FileType mail set spell
+
+augroup litecorrect
+  autocmd!
+  autocmd FileType markdown,mkd call litecorrect#init()
+  autocmd FileType mail call litecorrect#init()
+augroup END
 
 
 let syntastic_mode_map = { 'passive_filetypes': ['html']  }
