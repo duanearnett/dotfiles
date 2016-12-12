@@ -2,8 +2,63 @@
 " - Duane Arnett
 " - fortyau.com
 
+" Plugins ----------------------------------------------------------------
 " Activate pathogen
-call pathogen#infect()
+" call pathogen#infect()
+call plug#begin('~/.vim/plugged')
+
+" Themes
+Plug 'kristijanhusak/vim-hybrid-material'
+
+" Make VIM nicer
+Plug 'rbgrouleff/bclose.vim'   " Close a buffer
+Plug 'embear/vim-localvimrc'   " Overwrite config per directory
+
+" Editor niceties
+Plug 'jiangmiao/auto-pairs'
+Plug 'ctrlpvim/ctrlp.vim' | Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'rizzatti/dash.vim'
+Plug 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': './install --all'  }
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  } | Plug 'xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle'  }
+Plug 'scrooloose/syntastic'
+Plug 'majutsushi/tagbar'
+Plug 'mbbill/undotree'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-surround'
+Plug 'janko-m/vim-test'
+Plug 'valloric/youcompleteme', { 'do': './install.py --tern-completer' }
+" Plug 'gko/vim-coloresque' TODO this is breaking syntax highlighting
+
+" CSS
+Plug 'hail2u/vim-css3-syntax'
+
+" HTML
+Plug 'mattn/emmet-vim'
+
+" Jade/Pug
+Plug 'digitaltoad/vim-pug'
+
+" SCSS/SASS
+Plug 'gcorne/vim-sass-lint'
+
+" Coffeescript
+Plug 'lukaszkorecki/CoffeeTags'
+Plug 'mtscout6/vim-cjsx'
+Plug 'kchmck/vim-coffee-script'
+
+" Exlixir, erlang, etc
+" https://github.com/slashmili/alchemist.vim
+Plug 'elixir-lang/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+
+" PHP
+Plug 'StanAngeloff/php.vim'
+
+call plug#end()
+
+
 let syntastic_mode_map = { 'passive_filetypes': ['html']  }
 set nocompatible
 set noswapfile
@@ -46,6 +101,7 @@ set backspace=indent,eol,start
 set hidden
 
 " Uses the bclose script for some more sane buffer management
+nnoremap <silent> <Leader>bd :Bclose<CR>
 let bclose_multiple = 0
 
 " Shows invisibles like we are used to with other editors
@@ -121,6 +177,11 @@ let g:ycm_filetype_blacklist = {
       \ 'infolog' : 1,
       \ 'mail' : 1
       \}
+
+" -- Prose/lexical autocompletion
+" let g:predictive#dict_path = expand($HOME . '/dotfiles/words')
+" set dictionary=/usr/share/dict/words
+
 
 " make test commands execute using dispatch.vim
 " let test#strategy = "dispatch"
