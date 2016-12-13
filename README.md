@@ -68,6 +68,7 @@ Configuration and nav keys kept to mimic VIM defaults as most as possible.
 - Combined/aggregated inbox with offlineimap (only combining inboxes, gMail can store the bulk of the mail)
 - Alternative contact mgmt that isn't platform-specific
 - Enhanced "to task" functionality
+- Better urlview integration
 
 #### Details and Installation
 #### Sources, References, and Related Reading
@@ -85,6 +86,12 @@ integration and the contacts integration. Great article with practical use-cases
 
 
 ### Time management with **TimeWarrior**
+
+
+### Task management with **TaskWarrior**
+
+#### Sources, References, and Related Reading
+- todo.txt: http://todotxt.com
 
 
 ## Project TODOs

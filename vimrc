@@ -36,7 +36,7 @@ Plug 'valloric/youcompleteme', { 'do': './install.py --tern-completer' }
 " Plug 'gko/vim-coloresque' TODO this is breaking syntax highlighting
 
 " CSS
-Plug 'hail2u/vim-css3-syntax'
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'html'] }
 
 " HTML
 Plug 'mattn/emmet-vim', { 'for': 'html' }
@@ -45,17 +45,17 @@ Plug 'mattn/emmet-vim', { 'for': 'html' }
 Plug 'digitaltoad/vim-pug'
 
 " SCSS/SASS
-Plug 'gcorne/vim-sass-lint'
+Plug 'gcorne/vim-sass-lint', { 'for': ['scss', 'sass'] }
 
 " Coffeescript
-Plug 'lukaszkorecki/CoffeeTags'
-Plug 'mtscout6/vim-cjsx'
-Plug 'kchmck/vim-coffee-script'
+Plug 'lukaszkorecki/CoffeeTags', { 'for': ['coffee'] }
+Plug 'mtscout6/vim-cjsx', { 'for': ['coffee'] }
+Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
 
 " Exlixir, erlang, etc
 " https://github.com/slashmili/alchemist.vim
-Plug 'elixir-lang/vim-elixir'
-Plug 'slashmili/alchemist.vim'
+Plug 'elixir-lang/vim-elixir', { 'for': ['elixir'] }
+Plug 'slashmili/alchemist.vim', { 'for': ['elixir'] }
 
 " PHP
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
