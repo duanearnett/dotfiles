@@ -128,7 +128,12 @@ let bclose_multiple = 0
 set listchars=tab:>-,trail:.,extends:>,precedes:<,nbsp:.
 set list
 
-" Removes trailing spaces
+" Show an 80 character vertical rule...
+let &colorcolumn=join(range(81,999),",")
+let &colorcolumn="80,".join(range(400,999),",")
+
+
+" Removes trailing spaces on buffer write
 function! TrimWhiteSpace()
     let l = line(".")
     let c = col(".")
