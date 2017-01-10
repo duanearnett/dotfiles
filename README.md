@@ -33,6 +33,10 @@ Run the `install.sh` script. That doesn't exist yet but it will
   on-demand, when specific commands are called
 - Syntax highlighting, etc
 - Auto-completion
+- Integrated git commands via Fugitive plugin
+
+**Planned Functionality**
+- Async git commands (e.g., push...)
 
 #### Details and Installation
 Install [__vim-plug__](https://github.com/junegunn/vim-plug) to manage
