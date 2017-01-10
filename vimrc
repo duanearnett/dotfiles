@@ -41,6 +41,9 @@ Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'html'] }
 " HTML
 Plug 'mattn/emmet-vim', { 'for': 'html' }
 
+" HTML/XML
+Plug 'othree/xml.vim', { 'for': ['html', 'xml'] }
+
 " Jade/Pug
 Plug 'digitaltoad/vim-pug'
 
