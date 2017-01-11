@@ -72,9 +72,12 @@ Configuration and nav keys kept to mimic VIM defaults as most as possible.
 - Combined/aggregated inbox with offlineimap (only combining inboxes, gMail can store the bulk of the mail)
 - Alternative contact mgmt that isn't platform-specific
 - Enhanced "to task" functionality
-- Better urlview integration
+- Messages custom colored depending on type (text/calendar, etc)
 
 #### Details and Installation
+##### Dependencies
+- urlscan (https://github.com/firecat53/urlscan)
+
 #### Sources, References, and Related Reading
 **[Steve Losh's article/walkthorugh](http://stevelosh.com/blog/2012/10/the-homely-mutt/#how-i-use-email)**:
 I used this pretty extensively to get a decent jumping off point for my own setup. Mainly the gMail
@@ -87,6 +90,9 @@ integration and the contacts integration. Great article with practical use-cases
 - gChat
 - Hipchat
 - IRC
+
+#### Sources, References, and Related Reading
+**[This Guy's Setup](http://www.antonfagerberg.com/blog/my-perfect-irssi-setup/)**
 
 
 ### Time management with **TimeWarrior**
