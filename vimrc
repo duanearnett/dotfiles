@@ -25,7 +25,6 @@ Plug 'rizzatti/dash.vim'
 Plug 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  } | Plug 'xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle'  }
 Plug 'scrooloose/syntastic'
-Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
@@ -33,6 +32,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'janko-m/vim-test'
 Plug 'valloric/youcompleteme', { 'do': './install.py --tern-completer' }
+" Tagbar is disabled currently because a recent update broke it, but I dont
+" use it much...so...
+" TODO fix tagbar
+" Plug 'majutsushi/tagbar'
 " Plug 'gko/vim-coloresque' TODO this is breaking syntax highlighting
 
 " CSS
@@ -51,9 +54,12 @@ Plug 'digitaltoad/vim-pug'
 Plug 'gcorne/vim-sass-lint', { 'for': ['scss', 'sass'] }
 
 " Coffeescript
-Plug 'lukaszkorecki/CoffeeTags', { 'for': ['coffee'] }
 Plug 'mtscout6/vim-cjsx', { 'for': ['coffee'] }
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
+" Recent update broke tags...but again I don't use them often so disabling
+" them for now
+" TODO fix tags
+" Plug 'lukaszkorecki/CoffeeTags', { 'for': ['coffee'] }
 
 " Exlixir, erlang, etc
 " https://github.com/slashmili/alchemist.vim
@@ -62,6 +68,10 @@ Plug 'slashmili/alchemist.vim', { 'for': ['elixir'] }
 
 " PHP
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+
+" Java
+" TODO ...but first use the eclim plugin...
+" TODO conditionally toggle the eclim plugin on and off
 
 " Mail
 
@@ -100,6 +110,7 @@ set autoindent
 
 set scrolloff=3
 set guioptions=T
+
 
 " -- Default editorconfig
 set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
@@ -156,6 +167,7 @@ let g:CoffeeAutoTagDisabled=1     " Disables autotaging on save (Default: 0 [fal
 let g:CoffeeAutoTagIncludeVars=1  " Includes variables (Default: 0 [false])
 let g:CoffeeAutoTagTagRelative=1  " Sets file names to the relative path from the tag file location to the tag file location (Default: 1 [true])
 
+
 " -- Themes!
 set background=dark
 colorscheme hybrid_material
@@ -170,11 +182,40 @@ filetype indent on
 """ Stagebloc sbt files should be associated with HTML
 au BufRead,BufNewFile *.sbt setfiletype html
 
-" set guifont=DejaVu\ Sans\ Mono\ 13
-" set antialias
+set guifont=Hack
+set antialias
 
 " Airline
 " let g:airline#extensions#tabline#enabled = 1
+" air-line
+let g:airline_powerline_fonts = 1
+
+" if !exists('g:airline_symbols')
+"     let g:airline_symbols = {}
+" endif
+
+"  unicode symbols
+"let g:airline_left_sep = '»'
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '«'
+"let g:airline_right_sep = '◀'
+"let g:airline_symbols.linenr = '␊'
+"let g:airline_symbols.linenr = '␤'
+"let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'ρ'
+"let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+"let g:airline_symbols.whitespace = 'Ξ'
+"
+"" airline symbols
+"let g:airline_left_sep = ''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
+"let g:airline_symbols.branch = ''
+"let g:airline_symbols.readonly = ''
+"let g:airline_symbols.linenr = ''
 
 " -- ctrp config
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
@@ -202,6 +243,9 @@ let g:ycm_filetype_blacklist = {
       \ 'infolog' : 1,
       \ 'mail' : 1
       \}
+
+" -- Java autocompletion (adding eclim to omnifunc to be picked up by YCM)
+" let g:EclimCompletionMethod = 'omnifunc'
 
 " -- Prose/lexical autocompletion
 " let g:predictive#dict_path = expand($HOME . '/dotfiles/words')
@@ -299,19 +343,20 @@ let g:syntastic_scss_checkers=["sasslint"]
 let g:sass_lint_config = '~/Projects/Source/linters/.scss-lint.yml'
 
 " CTAGS Tagbar config for various languages...
-let g:tagbar_type_elixir = {
-    \ 'ctagstype' : 'elixir',
-    \ 'kinds' : [
-        \ 'f:functions',
-        \ 'functions:functions',
-        \ 'c:callbacks',
-        \ 'd:delegates',
-        \ 'e:exceptions',
-        \ 'i:implementations',
-        \ 'a:macros',
-        \ 'o:operators',
-        \ 'm:modules',
-        \ 'p:protocols',
-        \ 'r:records'
-    \ ]
-\ }
+" TODO uncomment when tagbar gets fixed
+" let g:tagbar_type_elixir = {
+"     \ 'ctagstype' : 'elixir',
+"     \ 'kinds' : [
+"         \ 'f:functions',
+"         \ 'functions:functions',
+"         \ 'c:callbacks',
+"         \ 'd:delegates',
+"         \ 'e:exceptions',
+"         \ 'i:implementations',
+"         \ 'a:macros',
+"         \ 'o:operators',
+"         \ 'm:modules',
+"         \ 'p:protocols',
+"         \ 'r:records'
+"     \ ]
+" \ }
