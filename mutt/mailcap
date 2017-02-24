@@ -12,13 +12,20 @@ image/gif; ~/.mutt/view_attachment.sh %s gif
 application/pdf; ~/.mutt/view_attachment.sh %s pdf
 
 # HTML
-text/html; opera %s ;
+# text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; nametemplate=%s.html; copiousoutput
+# text/html; opera %s ;
 text/html; w3m -T text/html -dump %s; copiousoutput
-#text/html; ~/.mutt/view_attachment.sh %s html
+# text/html; ~/.mutt/view_attachment.sh %s html
 
 # ICS and calendar invites
 application/ics; ~/.mutt/view_attachment.sh %s "-"
-text/calendar; ~/.mutt/view_attachment.sh %s "-"
+text/calendar; open -a /Applications/Calendar.app %s; nametemplate=%s.ics
+
+# Word/Excel/PowerPoint files
+application/vnd.openxmlformats-officedocument.presentationml.presentation; ~/.mutt/view_attachment.sh %s "-"
+application/vnd.ms-powerpoint; ~/.mutt/view_attachment.sh %s "-"
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; ~/.mutt/view_attachment.sh %s "-"
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; ~/.mutt/view_attachment.sh %s "-"
 
 # Unidentified files
 application/octet-stream; ~/.mutt/view_attachment.sh %s "-"
