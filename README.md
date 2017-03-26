@@ -26,6 +26,15 @@ Run the `install.sh` script. That doesn't exist yet but it will
 
 ## Applications Detail
 
+### Tmux
+Sessions are saved and restored with tmux-continuum and tmux-resurrect. Restart now
+worry free!
+
+- Install tmux plugin manager
+`git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
+
+
+
 ### Text and code with _VIM_
 
 **Current Functionality**
