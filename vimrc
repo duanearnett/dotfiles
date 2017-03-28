@@ -140,7 +140,7 @@ let bclose_multiple = 0
 
 " Leader git commands
 nnoremap <silent> <Leader>gs :Gstatus<CR>
-nnoremap <silent> <Leader>gp :Gstatus<CR>
+nnoremap <silent> <Leader>gp :Gpush<CR>
 
 " Shows invisibles like we are used to with other editors
 set listchars=tab:>-,trail:.,extends:>,precedes:<,nbsp:.
