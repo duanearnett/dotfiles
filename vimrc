@@ -12,7 +12,8 @@ Plug 'kristijanhusak/vim-hybrid-material'
 
 " Make VIM nicer
 Plug 'rbgrouleff/bclose.vim'   " Close a buffer
-Plug 'embear/vim-localvimrc'   " Overwrite config per directory
+" Plug 'embear/vim-localvimrc'   " Overwrite config per directory
+Plug 'tpope/vim-obsession'     " Better session management
 
 " Auto-correction for writing things
 " Plug 'reedes/vim-wordy', { 'for': ['mail', 'markdown', 'text'] }
@@ -33,6 +34,7 @@ Plug 'tpope/vim-surround'
 Plug 'janko-m/vim-test'
 Plug 'valloric/youcompleteme', { 'do': './install.py --tern-completer' }
 " Tagbar is disabled currently because a recent update broke it, but I dont
+
 " use it much...so...
 " TODO fix tagbar
 " Plug 'majutsushi/tagbar'
@@ -131,9 +133,14 @@ set noerrorbells
 set backspace=indent,eol,start
 set hidden
 
+" Leader keys mapping
 " Uses the bclose script for some more sane buffer management
 nnoremap <silent> <Leader>bd :Bclose<CR>
 let bclose_multiple = 0
+
+" Leader git commands
+nnoremap <silent> <Leader>gs :Gstatus<CR>
+nnoremap <silent> <Leader>gp :Gstatus<CR>
 
 " Shows invisibles like we are used to with other editors
 set listchars=tab:>-,trail:.,extends:>,precedes:<,nbsp:.
@@ -256,6 +263,9 @@ let g:ycm_filetype_blacklist = {
 " let test#strategy = "dispatch"
 
 " -- Hot keys
+" Really save things when you didn't open the file as sudo
+cmap w!! w !sudo tee % > /dev/null
+
 " Disabling the directional keys
 map <up> <nop>
 map <down> <nop>
