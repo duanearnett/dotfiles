@@ -191,6 +191,7 @@ au BufRead,BufNewFile *.sbt setfiletype html
 
 set guifont=Hack
 set antialias
+set fillchars=vert:│    " that's a vertical box-drawing character
 
 " Airline
 " let g:airline#extensions#tabline#enabled = 1
