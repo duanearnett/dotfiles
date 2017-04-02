@@ -349,6 +349,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint'] " Enable syntastic integration with
+let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
 let g:syntastic_sass_checkers=["sasslint"]       " my default linting files
 let g:syntastic_scss_checkers=["sasslint"]
 let g:sass_lint_config = '~/Projects/Source/linters/.scss-lint.yml'
