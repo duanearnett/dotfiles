@@ -279,6 +279,8 @@ imap <right> <nop>
 
 " Avoid using the <esc> key
 imap ii <Esc>
+" Quickly close a pane
+nmap qq :q<CR>
 
 " vim-test hotkeys
 nmap <silent> <leader>t :TestNearest<CR>
