@@ -11,9 +11,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'kristijanhusak/vim-hybrid-material'
 
 " Make VIM nicer
-Plug 'rbgrouleff/bclose.vim'   " Close a buffer
-" Plug 'embear/vim-localvimrc'   " Overwrite config per directory
-Plug 'tpope/vim-obsession'     " Better session management
+Plug 'rbgrouleff/bclose.vim'    " Close a buffer
+" Plug 'embear/vim-localvimrc'  " Overwrite config per directory
+
+" Tim Pope section
+Plug 'tpope/vim-obsession'      " Better session management
+Plug 'tpope/vim-dispatch'       " Async operations
+Plug 'tpope/vim-fugitive'       " Git in vim
+Plug 'tpope/vim-surround'
 
 " Auto-correction for writing things
 " Plug 'reedes/vim-wordy', { 'for': ['mail', 'markdown', 'text'] }
@@ -28,23 +33,18 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  } | Plug 'xuyuanp/nerdtre
 Plug 'scrooloose/syntastic'
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-surround'
 Plug 'janko-m/vim-test'
 Plug 'valloric/youcompleteme', { 'do': './install.py --tern-completer' }
-" Tagbar is disabled currently because a recent update broke it, but I dont
-
-" use it much...so...
-" TODO fix tagbar
-" Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 " Plug 'gko/vim-coloresque' TODO this is breaking syntax highlighting
 
 " CSS
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'html'] }
 
 " HTML
-Plug 'mattn/emmet-vim', { 'for': 'html' }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'hbs'] }
+Plug 'mustache/vim-mustache-handlebars', { 'for': 'hbs' }
 
 " HTML/XML
 Plug 'othree/xml.vim', { 'for': ['html', 'xml'] }
@@ -58,9 +58,6 @@ Plug 'gcorne/vim-sass-lint', { 'for': ['scss', 'sass'] }
 " Coffeescript
 Plug 'mtscout6/vim-cjsx', { 'for': ['coffee'] }
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
-" Recent update broke tags...but again I don't use them often so disabling
-" them for now
-" TODO fix tags
 " Plug 'lukaszkorecki/CoffeeTags', { 'for': ['coffee'] }
 
 " Exlixir, erlang, etc
@@ -140,7 +137,17 @@ let bclose_multiple = 0
 
 " Leader git commands
 nnoremap <silent> <Leader>gs :Gstatus<CR>
-nnoremap <silent> <Leader>gp :Gpush<CR>
+nnoremap <silent> <Leader>gp :Dispatch! :Gpush<CR>
+
+" Leader media commands
+nnoremap <silent> <Leader>sp<SPACE> :Dispatch! !spotify play<CR>
+nnoremap <silent> <Leader>spn :Dispatch! !spotify next<CR>
+nnoremap <silent> <Leader>spp :Dispatch! !spotify prev<CR>
+nnoremap <silent> <Leader>sps :Dispatch! !spotify pause<CR>
+nnoremap <silent> <Leader>spr :Dispatch! !spotify replay<CR><CR>
+
+nnoremap <silent> <Leader>d :Dispatch
+nnoremap <silent> <Leader>b :Dispatch!
 
 " Shows invisibles like we are used to with other editors
 set listchars=tab:>-,trail:.,extends:>,precedes:<,nbsp:.
@@ -169,11 +176,10 @@ autocmd BufWritePre     * :call TrimWhiteSpace()
 syntax enable
 
 " -- Coffee support
-let g:CoffeeAutoTagDisabled=1     " Disables autotaging on save (Default: 0 [false])
+" let g:CoffeeAutoTagDisabled=1     " Disables autotaging on save (Default: 0 [false])
 " let g:CoffeeAutoTagFile=<filename>       " Name of the generated tag file (Default: ./tags)
-let g:CoffeeAutoTagIncludeVars=1  " Includes variables (Default: 0 [false])
-let g:CoffeeAutoTagTagRelative=1  " Sets file names to the relative path from the tag file location to the tag file location (Default: 1 [true])
-
+" let g:CoffeeAutoTagIncludeVars=1  " Includes variables (Default: 0 [false])
+" let g:CoffeeAutoTagTagRelative=1  " Sets file names to the relative path from the tag file location to the tag file location (Default: 1 [true])
 
 " -- Themes!
 set background=dark
@@ -346,6 +352,7 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:syntastic_loc_list_height = 4
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -358,19 +365,19 @@ let g:sass_lint_config = '~/Projects/Source/linters/.scss-lint.yml'
 
 " CTAGS Tagbar config for various languages...
 " TODO uncomment when tagbar gets fixed
-" let g:tagbar_type_elixir = {
-"     \ 'ctagstype' : 'elixir',
-"     \ 'kinds' : [
-"         \ 'f:functions',
-"         \ 'functions:functions',
-"         \ 'c:callbacks',
-"         \ 'd:delegates',
-"         \ 'e:exceptions',
-"         \ 'i:implementations',
-"         \ 'a:macros',
-"         \ 'o:operators',
-"         \ 'm:modules',
-"         \ 'p:protocols',
-"         \ 'r:records'
-"     \ ]
-" \ }
+let g:tagbar_type_elixir = {
+    \ 'ctagstype' : 'elixir',
+    \ 'kinds' : [
+        \ 'f:functions',
+        \ 'functions:functions',
+        \ 'c:callbacks',
+        \ 'd:delegates',
+        \ 'e:exceptions',
+        \ 'i:implementations',
+        \ 'a:macros',
+        \ 'o:operators',
+        \ 'm:modules',
+        \ 'p:protocols',
+        \ 'r:records'
+    \ ]
+\ }
