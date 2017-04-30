@@ -267,7 +267,7 @@ let g:ycm_filetype_blacklist = {
 
 
 " make test commands execute using dispatch.vim
-" let test#strategy = "dispatch"
+let test#strategy = "dispatch"
 
 " -- Hot keys
 " Really save things when you didn't open the file as sudo
@@ -365,19 +365,19 @@ let g:sass_lint_config = '~/Projects/Source/linters/.scss-lint.yml'
 
 " CTAGS Tagbar config for various languages...
 " TODO uncomment when tagbar gets fixed
-let g:tagbar_type_elixir = {
-    \ 'ctagstype' : 'elixir',
-    \ 'kinds' : [
-        \ 'f:functions',
-        \ 'functions:functions',
-        \ 'c:callbacks',
-        \ 'd:delegates',
-        \ 'e:exceptions',
-        \ 'i:implementations',
-        \ 'a:macros',
-        \ 'o:operators',
-        \ 'm:modules',
-        \ 'p:protocols',
-        \ 'r:records'
-    \ ]
-\ }
+" let g:tagbar_type_elixir = {
+"     \ 'ctagstype' : 'elixir',
+"     \ 'kinds' : [
+"         \ 'f:functions',
+"         \ 'functions:functions',
+"         \ 'c:callbacks',
+"         \ 'd:delegates',
+"         \ 'e:exceptions',
+"         \ 'i:implementations',
+"         \ 'a:macros',
+"         \ 'o:operators',
+"         \ 'm:modules',
+"         \ 'p:protocols',
+"         \ 'r:records'
+"     \ ]
+" \ }
