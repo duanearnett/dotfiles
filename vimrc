@@ -28,7 +28,9 @@ Plug 'reedes/vim-litecorrect', { 'for': ['mail', 'markdown', 'text'] }
 Plug 'jiangmiao/auto-pairs'
 Plug 'ctrlpvim/ctrlp.vim' | Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'rizzatti/dash.vim'
-Plug 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': './install --all'  }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin'  }
+Plug 'junegunn/fzf.vim'
+" Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  } | Plug 'xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle'  }
 Plug 'scrooloose/syntastic'
 Plug 'mbbill/undotree'
@@ -98,7 +100,7 @@ set norelativenumber
 set foldmethod=manual
 set noesckeys
 set timeoutlen=1000 ttimeoutlen=0
-set clipboard=unnamed              " - Use the system clipboard inside vim
+set clipboard=unnamedplus           " - Use the system clipboard inside vim
 
 " -- Display
 set title
@@ -121,6 +123,7 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
+let g:ackprg = 'ag --vimgrep'
 
 " -- Beep
 set visualbell
@@ -309,7 +312,7 @@ nmap <F8> :TagbarToggle<CR>
 
 " FZF setup
 " https://github.com/junegunn/fzf.vim
-set rtp+=/usr/local/opt/fzf
+set rtp+=~/.fzf
 
 " This is the default extra key bindings
 let g:fzf_action = {
@@ -364,20 +367,19 @@ let g:syntastic_scss_checkers=["sasslint"]
 let g:sass_lint_config = '~/Projects/Source/linters/.scss-lint.yml'
 
 " CTAGS Tagbar config for various languages...
-" TODO uncomment when tagbar gets fixed
-" let g:tagbar_type_elixir = {
-"     \ 'ctagstype' : 'elixir',
-"     \ 'kinds' : [
-"         \ 'f:functions',
-"         \ 'functions:functions',
-"         \ 'c:callbacks',
-"         \ 'd:delegates',
-"         \ 'e:exceptions',
-"         \ 'i:implementations',
-"         \ 'a:macros',
-"         \ 'o:operators',
-"         \ 'm:modules',
-"         \ 'p:protocols',
-"         \ 'r:records'
-"     \ ]
-" \ }
+let g:tagbar_type_elixir = {
+    \ 'ctagstype' : 'elixir',
+    \ 'kinds' : [
+        \ 'f:functions',
+        \ 'functions:functions',
+        \ 'c:callbacks',
+        \ 'd:delegates',
+        \ 'e:exceptions',
+        \ 'i:implementations',
+        \ 'a:macros',
+        \ 'o:operators',
+        \ 'm:modules',
+        \ 'p:protocols',
+        \ 'r:records'
+    \ ]
+\ }
