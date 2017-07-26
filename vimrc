@@ -39,20 +39,26 @@ Plug 'airblade/vim-gitgutter'
 Plug 'janko-m/vim-test'
 Plug 'valloric/youcompleteme', { 'do': './install.py --tern-completer' }
 Plug 'majutsushi/tagbar'
-" Plug 'gko/vim-coloresque' TODO this is breaking syntax highlighting
+" Plug 'SirVer/ultisnips'       " Track the engine.
+" Plug 'honza/vim-snippets'     " Snippets are separated from the engine. Add this if you want them:
+
+Plug 'gko/vim-coloresque', { 'for': ['css', 'scss', 'less'] }
+
+" CSVs
+Plug 'chrisbra/csv.vim', { 'for': ['csv'] }
 
 " CSS
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'html'] }
 
 " HTML
-Plug 'mattn/emmet-vim', { 'for': ['html', 'hbs'] }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'hbs', 'eelixir'] }
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'hbs' }
 
 " HTML/XML
 Plug 'othree/xml.vim', { 'for': ['html', 'xml'] }
 
 " Jade/Pug
-Plug 'digitaltoad/vim-pug'
+Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
 
 " SCSS/SASS
 Plug 'gcorne/vim-sass-lint', { 'for': ['scss', 'sass'] }
@@ -69,6 +75,7 @@ Plug 'slashmili/alchemist.vim', { 'for': ['elixir'] }
 
 " PHP
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+
 
 " Java
 " TODO ...but first use the eclim plugin...
@@ -261,6 +268,17 @@ let g:ycm_filetype_blacklist = {
       \ 'mail' : 1
       \}
 
+
+"  -- Ultinsnips config
+"  " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"  let g:UltiSnipsExpandTrigger="<Leader><tab>"
+"  let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"
+"  " If you want :UltiSnipsEdit to split your window.
+"  let g:UltiSnipsEditSplit="vertical"
+
+
 " -- Java autocompletion (adding eclim to omnifunc to be picked up by YCM)
 " let g:EclimCompletionMethod = 'omnifunc'
 
@@ -297,6 +315,9 @@ nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
+
+" Leader key to tidy up HTML
+nmap <silent> <leader>f :!tidy -mi -html -wrap 0 %<CR>
 
 " Open dash.app under the current cursor
 nmap <C-h> :Dash<CR>
