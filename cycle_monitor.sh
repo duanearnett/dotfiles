@@ -29,7 +29,13 @@ if [ $monitor_mode = "office" ]; then
 fi
 
 if [ $monitor_mode = "laptop" ]; then
-    xrandr --output $INTERNAL_OUTPUT --auto --primary --dpi 209.8 --output $EXTERNAL_OUTPUT --off
+    xrandr --output $INTERNAL_OUTPUT \
+           --auto \
+           --primary \
+           --dpi 209.8 \
+           --output $EXTERNAL_OUTPUT \
+           --off
+
     sed -i '6s/.*/Xft.dpi: 170/' ~/.Xdefaults
 fi
 
@@ -40,10 +46,10 @@ if [ $monitor_mode = "home" ]; then
            --output $HDMI_OUTPUT \
            --primary \
            --auto \
-           --dpi 104 \
+           --dpi 108 \
            --left-of $INTERNAL_OUTPUT
 
-    sed -i '6s/.*/Xft.dpi: 104/' ~/.Xdefaults
+    sed -i '6s/.*/Xft.dpi: 108/' ~/.Xdefaults
 fi
 
 # Reload the config and restart i3...
@@ -55,6 +61,11 @@ sleep 1
 
 i3-msg restart
 sleep 2
+
+# ...Very specific to this setup...
+# Reloads the BG images so they fit properly
+# after a resolution/DPI change
+feh --bg-fill --randomize ~/Pictures/Desktops/*
 
 # Notify what monitor mode we just switched to...
 notify-send -u low "Monitor mode changed!" "Monitor set to <b><i>${monitor_mode}</i></b>."
