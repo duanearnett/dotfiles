@@ -245,11 +245,13 @@ let g:airline_powerline_fonts = 1
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_lazy_update = 150
 let g:ctrlp_clear_cache_on_exit = 0
-set wildignore+=*/tmp/*,*.so,*.tmp/,*/node_modules,*/dist,*.swp,*.zip
+set wildignore+=*/tmp/*,*.so,*.tmp/,*/node_modules,*/dist,*.swp,*.zip,*.beam
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](doc|tmp|.tmp|node_modules|dist)',
-  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'file': '\v\.(exe|so|dll|beam)$',
   \ }
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+
 
 " -- NERDtree config
 let NERDTreeShowHidden=1
@@ -401,6 +403,7 @@ let g:tagbar_type_elixir = {
         \ 'o:operators',
         \ 'm:modules',
         \ 'p:protocols',
-        \ 'r:records'
+        \ 'r:records',
+        \ 't:tests'
     \ ]
 \ }
