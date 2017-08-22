@@ -193,9 +193,12 @@ syntax enable
 
 " -- Themes!
 set background=dark
+set cursorline
+set cursorcolumn
 colorscheme hybrid_material
 let g:airline_theme="hybrid"
-let g:enable_bold_font =1
+let g:enable_bold_font=1
+let g:enable_italic_font=1
 
 
 "" Enable file specific behavior like syntax highlighting and indentation
