@@ -7,18 +7,26 @@
 " call pathogen#infect()
 call plug#begin('~/.vim/plugged')
 
+Plug 'blindFS/vim-taskwarrior'
+
 " Themes
 Plug 'kristijanhusak/vim-hybrid-material'
 
 " Make VIM nicer
 Plug 'rbgrouleff/bclose.vim'    " Close a buffer
+Plug 'junegunn/vim-peekaboo'
 " Plug 'embear/vim-localvimrc'  " Overwrite config per directory
+Plug 'easymotion/vim-easymotion'
 
 " Tim Pope section
 Plug 'tpope/vim-obsession'      " Better session management
 Plug 'tpope/vim-dispatch'       " Async operations
 Plug 'tpope/vim-fugitive'       " Git in vim
 Plug 'tpope/vim-surround'
+
+" Git helpers
+Plug 'tpope/vim-rhubarb'
+Plug 'shumphrey/fugitive-gitlab.vim'
 
 " Auto-correction for writing things
 " Plug 'reedes/vim-wordy', { 'for': ['mail', 'markdown', 'text'] }
@@ -31,8 +39,10 @@ Plug 'rizzatti/dash.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin'  }
 Plug 'junegunn/fzf.vim'
 " Plug 'mileszs/ack.vim'
+"
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  } | Plug 'xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle'  }
 Plug 'scrooloose/syntastic'
+" Plug 'mtscout6/syntastic-local-eslint.vim', { 'for': ['js', 'jsx'] }
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
@@ -68,7 +78,7 @@ Plug 'mtscout6/vim-cjsx', { 'for': ['coffee'] }
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
 " Plug 'lukaszkorecki/CoffeeTags', { 'for': ['coffee'] }
 
-" Exlixir, erlang, etc
+" Elixir, erlang, etc
 " https://github.com/slashmili/alchemist.vim
 Plug 'elixir-lang/vim-elixir', { 'for': ['elixir'] }
 Plug 'slashmili/alchemist.vim', { 'for': ['elixir'] }
@@ -140,22 +150,22 @@ set noerrorbells
 set backspace=indent,eol,start
 set hidden
 
+" Movement...
+set iskeyword-=.
+
 " Leader keys mapping
 " Uses the bclose script for some more sane buffer management
 nnoremap <silent> <Leader>bd :Bclose<CR>
+nnoremap <Tab> :bnext<CR>:redraw<CR>
+nnoremap <S-Tab> :bprevious<CR>:redraw<CR>
+
 let bclose_multiple = 0
 
 " Leader git commands
 nnoremap <silent> <Leader>gs :Gstatus<CR>
 nnoremap <silent> <Leader>gp :Dispatch! :Gpush<CR>
 
-" Leader media commands
-nnoremap <silent> <Leader>sp<SPACE> :Dispatch! !spotify play<CR>
-nnoremap <silent> <Leader>spn :Dispatch! !spotify next<CR>
-nnoremap <silent> <Leader>spp :Dispatch! !spotify prev<CR>
-nnoremap <silent> <Leader>sps :Dispatch! !spotify pause<CR>
-nnoremap <silent> <Leader>spr :Dispatch! !spotify replay<CR><CR>
-
+" Leader dispatch commands
 nnoremap <silent> <Leader>d :Dispatch
 nnoremap <silent> <Leader>b :Dispatch!
 
@@ -260,6 +270,8 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-stand
 let NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['\~$', 'vendor', 'tmp', '.tmp', 'dist', 'node_modules', 'bower_components']
 
+let g:tern_map_keys=1                       "enable keyboard shortcuts
+let g:tern_show_argument_hints='on_hold'    "show argument hints
 let g:ycm_filetype_blacklist = {
       \ 'tagbar' : 1,
       \ 'qf' : 1,
@@ -273,7 +285,6 @@ let g:ycm_filetype_blacklist = {
       \ 'mail' : 1
       \}
 
-
 "  -- Ultinsnips config
 "  " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 "  let g:UltiSnipsExpandTrigger="<Leader><tab>"
@@ -282,7 +293,6 @@ let g:ycm_filetype_blacklist = {
 "
 "  " If you want :UltiSnipsEdit to split your window.
 "  let g:UltiSnipsEditSplit="vertical"
-
 
 " -- Java autocompletion (adding eclim to omnifunc to be picked up by YCM)
 " let g:EclimCompletionMethod = 'omnifunc'
@@ -311,6 +321,7 @@ imap <right> <nop>
 
 " Avoid using the <esc> key
 imap ii <Esc>
+
 " Quickly close a pane
 nmap qq :q<CR>
 
@@ -320,6 +331,11 @@ nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
+
+" Managing, rearranging, and opening tabs
+nnoremap <silent> <leader>q :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+nnoremap <silent> <leader>w :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
+nnoremap <silent> <leader>e :tabedit<CR>
 
 " Leader key to tidy up HTML
 nmap <silent> <leader>f :!tidy -mi -html -wrap 0 %<CR>
@@ -390,7 +406,6 @@ let g:syntastic_javascript_checkers = ['eslint'] " Enable syntastic integration 
 let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
 let g:syntastic_sass_checkers=["sasslint"]       " my default linting files
 let g:syntastic_scss_checkers=["sasslint"]
-let g:sass_lint_config = '~/Projects/Source/linters/.scss-lint.yml'
 
 " CTAGS Tagbar config for various languages...
 let g:tagbar_type_elixir = {
