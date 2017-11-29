@@ -44,12 +44,13 @@ if [ $monitor_mode = "home" ]; then
            --scale 1x1 \
            --mode 1360x768 \
            --output $HDMI_OUTPUT \
+           --mode 1920x1200 \
            --primary \
            --auto \
-           --dpi 108 \
+           --dpi 109 \
            --left-of $INTERNAL_OUTPUT
 
-    sed -i '6s/.*/Xft.dpi: 108/' ~/.Xdefaults
+    sed -i '6s/.*/Xft.dpi: 96/' ~/.Xdefaults
 fi
 
 # Reload the config and restart i3...
