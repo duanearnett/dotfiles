@@ -1,1 +1,3 @@
 keep-articles-days 14
+download-full-page yes
+auto-reload yes

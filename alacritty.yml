@@ -73,13 +73,13 @@ font:
     # style: Italic
 
   # Point size of the font
-  size: 8.0
+  size: 7.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
     x: 0.0
-    y: 1.0
+    y: 0.0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increase the x offset to move the glyph to
@@ -128,6 +128,7 @@ colors:
     magenta: '0xc678dd'
     cyan:    '0x56b6c2'
     white:   '0xffffff'
+
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
@@ -172,6 +173,7 @@ background_opacity: 1.0
 # - Paste
 # - PasteSelection
 # - Copy (TODO)
+
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 

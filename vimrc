@@ -7,8 +7,6 @@
 " call pathogen#infect()
 call plug#begin('~/.vim/plugged')
 
-Plug 'blindFS/vim-taskwarrior'
-
 " Themes
 Plug 'kristijanhusak/vim-hybrid-material'
 
@@ -16,7 +14,7 @@ Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'rbgrouleff/bclose.vim'    " Close a buffer
 Plug 'junegunn/vim-peekaboo'
 " Plug 'embear/vim-localvimrc'  " Overwrite config per directory
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 
 " Tim Pope section
 Plug 'tpope/vim-obsession'      " Better session management
@@ -35,11 +33,12 @@ Plug 'reedes/vim-litecorrect', { 'for': ['mail', 'markdown', 'text'] }
 " Editor niceties
 Plug 'jiangmiao/auto-pairs'
 Plug 'ctrlpvim/ctrlp.vim' | Plug 'FelikZ/ctrlp-py-matcher'
-Plug 'rizzatti/dash.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin'  }
 Plug 'junegunn/fzf.vim'
 " Plug 'mileszs/ack.vim'
-"
+" Enable for OSX:
+" Plug 'rizzatti/dash.vim'
+
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  } | Plug 'xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle'  }
 Plug 'scrooloose/syntastic'
 " Plug 'mtscout6/syntastic-local-eslint.vim', { 'for': ['js', 'jsx'] }
@@ -49,8 +48,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'janko-m/vim-test'
 Plug 'valloric/youcompleteme', { 'do': './install.py --tern-completer' }
 Plug 'majutsushi/tagbar'
-" Plug 'SirVer/ultisnips'       " Track the engine.
-" Plug 'honza/vim-snippets'     " Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'     " Snippets are separated from the engine. Add this if you want them:
+Plug 'SirVer/ultisnips'       " Track the engine.
 
 Plug 'gko/vim-coloresque', { 'for': ['css', 'scss', 'less'] }
 
@@ -61,19 +60,21 @@ Plug 'chrisbra/csv.vim', { 'for': ['csv'] }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'html'] }
 
 " HTML
-Plug 'mattn/emmet-vim', { 'for': ['html', 'hbs', 'eelixir'] }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'hbs', 'eelixir', 'js', 'javascript', 'jsx'] }
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'hbs' }
 
 " HTML/XML
 Plug 'othree/xml.vim', { 'for': ['html', 'xml'] }
 
 " Jade/Pug
+" TODO DEPRECATE this...
 Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
 
 " SCSS/SASS
 Plug 'gcorne/vim-sass-lint', { 'for': ['scss', 'sass'] }
 
 " Coffeescript
+" TODO DEPRECATE the cjsx plugin
 Plug 'mtscout6/vim-cjsx', { 'for': ['coffee'] }
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
 " Plug 'lukaszkorecki/CoffeeTags', { 'for': ['coffee'] }
@@ -83,9 +84,18 @@ Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
 Plug 'elixir-lang/vim-elixir', { 'for': ['elixir'] }
 Plug 'slashmili/alchemist.vim', { 'for': ['elixir'] }
 
+" Javascript
+" Plug 'mxw/vim-jsx', { 'for': ['js', 'javascript', 'jsx']  }
+" Plug 'pangloss/vim-javascript', { 'for': ['js', 'javascript', 'jsx']  }
+Plug 'heavenshell/vim-jsdoc', { 'for': ['js', 'javascript', 'jsx']   }
+Plug 'epilande/vim-react-snippets'
+
+" Crystal lang
+Plug 'rhysd/vim-crystal', { 'for': ['crystal'] }
+
 " PHP
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
-
+Plug 'lumiliet/vim-twig', { 'for': 'twig' }
 
 " Java
 " TODO ...but first use the eclim plugin...
@@ -100,6 +110,7 @@ set spelllang=en_us
 au BufRead,BufNewFile *mutt* set filetype=mail
 autocmd FileType mail set spell
 
+
 augroup litecorrect
   autocmd!
   autocmd FileType markdown,mkd call litecorrect#init()
@@ -110,6 +121,7 @@ augroup END
 let syntastic_mode_map = { 'passive_filetypes': ['html']  }
 set nocompatible
 set noswapfile
+set backupcopy=yes
 set nobackup
 set nocursorcolumn
 set nocursorline
@@ -155,6 +167,7 @@ set iskeyword-=.
 
 " Leader keys mapping
 " Uses the bclose script for some more sane buffer management
+nnoremap <silent> <Leader>bl :Buffers<CR>
 nnoremap <silent> <Leader>bd :Bclose<CR>
 nnoremap <Tab> :bnext<CR>:redraw<CR>
 nnoremap <S-Tab> :bprevious<CR>:redraw<CR>
@@ -163,7 +176,7 @@ let bclose_multiple = 0
 
 " Leader git commands
 nnoremap <silent> <Leader>gs :Gstatus<CR>
-nnoremap <silent> <Leader>gp :Dispatch! :Gpush<CR>
+nnoremap <silent> <Leader>gp :Gpush<CR>
 
 " Leader dispatch commands
 nnoremap <silent> <Leader>d :Dispatch
@@ -285,17 +298,17 @@ let g:ycm_filetype_blacklist = {
       \ 'mail' : 1
       \}
 
-"  -- Ultinsnips config
-"  " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-"  let g:UltiSnipsExpandTrigger="<Leader><tab>"
-"  let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-"
-"  " If you want :UltiSnipsEdit to split your window.
-"  let g:UltiSnipsEditSplit="vertical"
+" -- Ultinsnips config
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<Leader><tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " -- Java autocompletion (adding eclim to omnifunc to be picked up by YCM)
-" let g:EclimCompletionMethod = 'omnifunc'
+let g:EclimCompletionMethod = 'omnifunc'
 
 " -- Prose/lexical autocompletion
 " let g:predictive#dict_path = expand($HOME . '/dotfiles/words')
@@ -340,8 +353,8 @@ nnoremap <silent> <leader>e :tabedit<CR>
 " Leader key to tidy up HTML
 nmap <silent> <leader>f :!tidy -mi -html -wrap 0 %<CR>
 
-" Open dash.app under the current cursor
-nmap <C-h> :Dash<CR>
+" Open dash.app under the current cursor for OSX only obviously...
+" nmap <C-h> :Dash<CR>
 
 " easily insert blank lines above and below without Insert mode
 map <Enter> o<ESC>
